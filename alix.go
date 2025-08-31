@@ -1,18 +1,29 @@
 package main
+
 import (
-	"os"
-	"log"
-	"github.com/urfave/cli/v3"
 	"context"
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/urfave/cli/v3"
 )
 var logger *log.Logger
-var shellType string
+var shellDir string
 
 func main(){
 	cmd := &cli.Command{
 		Name:    "alix",
 		Usage:   "summons alix, the manager of aliases",
 		Commands: []*cli.Command{
+			{
+				Name:  "debug",
+				Usage: "Testing purposes",
+				Action: func(ctx context.Context, cmd *cli.Command) error{
+					fmt.Println("testing123")
+					return nil
+				},
+			},
 			{
 				Name:  "add",
 				Usage: "Creates a new alias",
@@ -53,11 +64,11 @@ func init(){
 		log.Fatal(err)
 	}
 	logger = log.New(file, "INFO: ", log.Ldate|log.Ltime|log.Lshortfile)
-	logger.Println("Started new instance of app...")
-		
-	shellType, err = detectShellType()
+	logger.Println("Started new instance of alix")
+
+	shellDir, err = detectShellType()
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 	}
-	logger.Println("Shell type detected: ", shellType)
+	logger.Println("Shell type detected, path: ", shellDir)
 }
