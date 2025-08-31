@@ -16,24 +16,27 @@ func main(){
 		Name:    "alix",
 		Usage:   "summons alix, the manager of aliases",
 		Commands: []*cli.Command{
-			{
-				Name:  "debug",
-				Usage: "Testing purposes",
-				Action: debug,
-			},
+			// {
+			// 	Name:  "debug",
+			// 	Usage: "Testing purposes",
+			// 	Action: debug,
+			// },
 			{
 				Name:  "add",
 				Usage: "Creates a new alias",
+				Aliases: []string{"new","create","insert"},
 				Action: add,
 			},
 						{
 				Name:  "delete",
 				Usage: "Remove an existing alias",
+				Aliases: []string{"remove","rm","del"},
 				Action: delete,
 			},			
 			{
 				Name:  "update",
 				Usage: "Updates an existing alias",
+				Aliases: []string{"edit","modify","change"},
 				Action: update,
 			},			
 			{
@@ -42,8 +45,9 @@ func main(){
 				Action: list,
 				Commands: []*cli.Command{
                     {
-                        Name:  "-la",
+                        Name:  "detailed",
                         Usage: "Shows existing aliases in detail",
+						Aliases: []string{"show-all","details","info"},
                         Action: listDetailed,
 					},
 				},
