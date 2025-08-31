@@ -1,3 +1,11 @@
+# Alix , the manager of aliases
+## Features
+
+- Add, update, delete, and list shell aliases
+- Supports subcommands and aliases for usability
+- Detailed listing of aliases with ```ls detailed```
+
+---
 ## Installation
 
 ### Download Pre-built Binary (Recommended)
@@ -50,14 +58,6 @@ source ~/.zshrc
 - (Protip) You can turn the source command into an alias as well to optimize your workflow!
 ---
 
-## Features
-
-- Add, update, delete, and list shell aliases
-- Supports subcommands and aliases for usability
-- Detailed listing of aliases with ```ls detailed```
-
----
-
 ## How to Contribute
 
 1. **Fork the repo** and clone it locally:
@@ -84,7 +84,7 @@ source ~/.zshrc
 ### Troubleshooting
 - Share your logs
 ```sh
-   ~/.alix.alix.log
+   ~/.alix/alix.log
 ```
 ## License
 GNU GPL Version 3.0
