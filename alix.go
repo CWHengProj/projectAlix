@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"fmt"
+	// "fmt"
 	"log"
 	"os"
 
@@ -19,10 +19,7 @@ func main(){
 			{
 				Name:  "debug",
 				Usage: "Testing purposes",
-				Action: func(ctx context.Context, cmd *cli.Command) error{
-					fmt.Println("testing123")
-					return nil
-				},
+				Action: debug,
 			},
 			{
 				Name:  "add",
