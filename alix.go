@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-
+	"path/filepath"
 	"github.com/urfave/cli/v3"
 )
 
@@ -67,7 +67,16 @@ func main() {
 	}
 }
 func init() {
-	file, err := os.OpenFile("alix.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	home, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatal(err)
+	}
+	logDir := filepath.Join(home, ".alix")
+	if err := os.MkdirAll(logDir, 0755); err != nil {
+		log.Fatal(err)
+	}
+	logPath := filepath.Join(logDir, "alix.log")
+	file, err := os.OpenFile(logPath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}

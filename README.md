@@ -81,5 +81,10 @@ source ~/.zshrc
 - Be respectful in discussions.
 - Update your branch from the main branch to avoid conflicts.
 
+### Troubleshooting
+- Share your logs
+```sh
+   ~/.alix.alix.log
+```
 ## License
 GNU GPL Version 3.0
