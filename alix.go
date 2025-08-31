@@ -4,9 +4,9 @@ import (
 	"log"
 	"github.com/urfave/cli/v3"
 	"context"
-	"fmt"
 )
 var logger *log.Logger
+var shellType string
 
 func main(){
 	cmd := &cli.Command{
@@ -16,38 +16,28 @@ func main(){
 			{
 				Name:  "add",
 				Usage: "Creates a new alias",
-				Action: func(ctx context.Context, cmd *cli.Command) error {
-					fmt.Println("removed task template: ", cmd.Args().First())
-					return nil
-				},
+				Action: add,
 			},
 						{
 				Name:  "delete",
 				Usage: "Remove an existing alias",
-				Action: func(ctx context.Context, cmd *cli.Command) error {
-					fmt.Println("removed task template: ", cmd.Args().First())
-					return nil
-				},
-			},			{
+				Action: delete,
+			},			
+			{
 				Name:  "update",
 				Usage: "Updates an existing alias",
-				Action: func(ctx context.Context, cmd *cli.Command) error {
-					fmt.Println("removed task template: ", cmd.Args().First())
-					return nil
-				},
+				Action: update,
 			},			
 			{
 				Name:  "ls",
 				Usage: "Shows all existing aliases",
+				Action: list,
 				Commands: []*cli.Command{
                     {
                         Name:  "-la",
                         Usage: "Shows existing aliases in detail",
-                        Action: func(ctx context.Context, cmd *cli.Command) error {
-                            fmt.Println("new task template: ", cmd.Args().First())
-                            return nil
-                        },
-                    },
+                        Action: listDetailed,
+					},
 				},
 			},
 		},
@@ -64,5 +54,10 @@ func init(){
 	}
 	logger = log.New(file, "INFO: ", log.Ldate|log.Ltime|log.Lshortfile)
 	logger.Println("Started new instance of app...")
-	//TODO: detect the type of .*shrc user is using
+		
+	shellType, err = detectShellType()
+	if err != nil {
+		log.Fatal(err)
+	}
+	logger.Println("Shell type detected: ", shellType)
 }
