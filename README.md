@@ -5,8 +5,9 @@
 1. Download the latest release from [GitHub Releases](https://github.com/CWHengProj/projectAlix/releases).
 2. Move the binary to `/usr/local/bin`:
    ```sh
-   sudo <name-of-downloaded-binary> alix
+   sudo mv <name-of-downloaded-binary> alix
    sudo mv alix /usr/local/bin/
+   sudo chmod +x /usr/local/bin/alix
    ```
 3. Run `alix` from anywhere:
    ```sh
@@ -37,7 +38,16 @@ alix add myalias "echo hello"
 alix ls
 alix delete myalias
 ```
-
+#### Make your changes reflect in your .shrc file
+- linux (bash)
+```sh
+source ~/.bashrc
+```
+- MacOS (zsh)
+```sh
+source ~/.zshrc
+```
+- (Protip) You can turn the source command into an alias as well to optimize your workflow!
 ---
 
 ## Features
